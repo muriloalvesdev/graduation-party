@@ -58,7 +58,7 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: auth-service-artifact
           path: auth-service/target/*.jar
@@ -71,7 +71,7 @@ jobs:
 
     steps:
       - name: Download Artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.2.1
         with:
           name: auth-service-artifact
           path: artifact
