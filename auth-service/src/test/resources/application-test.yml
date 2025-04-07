@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: auth-service
+
+server:
+  port: 8081
+  servlet:
+    context-path: /api/v1
+
+jwt:
+  secret: IQtVzYM/m2FFQ3xrD8QbF5+WgfxAiPoN9Fg77OYudbs=
+  expiration: 86400000
+
+keycloak:
+  realm: "graduation-realm"
+  server-url: "http://keycloak:8080"
+  resource: "auth-service"
+  credentials:
+    secret: "7lpM6koEjtcWRWdusYNfLV4oF+pK33LVnZcjjnv84vs="
+  admin:
+    username: "admin"
+    password: "admin"
+    client-id: "admin-cli"
+
+auth:
+  persistence:
+    provider: keycloak
+
+resilience4j.circuitbreaker:
+  instances:
+    keycloak:
+      slidingWindowSize: 5
+      failureRateThreshold: 100
+      waitDurationInOpenState: 10000
+      permittedNumberOfCallsInHalfOpenState: 3
+      slidingWindowType: COUNT_BASED
+
+aws:
+  s3:
+    bucket: auth-service-phofile-photos
+    region: sa-east-1
+    access-key: any
+    secret-key: any
+
+logging:
+  level:
+    com.graduationparty.authservice: DEBUG
+    org.springframework.security: DEBUG
+    root: INFO
+    io.github.resilience4j: DEBUG

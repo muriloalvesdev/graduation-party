@@ -1,0 +1,18 @@
+# Arquivos gerados pelo Maven
+/target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Arquivos de log
+*.log
+
+# Arquivos de IDE
+.idea/
+*.iml
+.vscode/
+
+# Arquivos temporários
+*.swp
+*.swo
