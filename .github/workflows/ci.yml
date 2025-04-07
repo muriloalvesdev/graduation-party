@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: CI Pipeline - Auth Service
 
 on:
   push:
@@ -28,15 +28,19 @@ jobs:
           mvn -version
 
       - name: Run Unit Tests
+        working-directory: auth-service
         run: mvn clean test -Djunit.jupiter.include.tags=unit
 
       - name: Run Integration Tests
+        working-directory: auth-service
         run: mvn test -Djunit.jupiter.include.tags=integration
 
       - name: Generate JaCoCo Coverage Report
+        working-directory: auth-service
         run: mvn jacoco:report
 
       - name: SonarQube Analysis
+        working-directory: auth-service
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
