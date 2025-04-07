@@ -7,6 +7,11 @@ server:
   servlet:
     context-path: /api/v1
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: logfile,loggers,health,info
 jwt:
   secret: ${JWT_SECRET:IQtVzYM/m2FFQ3xrD8QbF5+WgfxAiPoN9Fg77OYudbs=}
   expiration: ${JWT_EXPIRATION:86400000}
@@ -28,7 +33,6 @@ aws:
     region: ${AWS_S3_REGION:sa-east-1}
     access-key: ${AWS_S3_ACCESS_KEY:AKIAU3XM25VYWDOB6DFW}
     secret-key: ${AWS_S3_SECRET_KEY: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}
-
 auth:
   persistence:
     provider: ${AUTH_PERSISTENCE_PROVIDER:keycloak}
@@ -51,3 +55,5 @@ logging:
       springframework:
         security: DEBUG
     root: INFO
+  file:
+    name: application.log
